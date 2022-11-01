@@ -6,8 +6,7 @@ class TimeCounter {
 
 
     constructor() {
-        this.btnStart = document.querySelector('button[data-start=""]');
-        this.dtPicker = document.querySelector('input[type="text"]');
+
         this.dataDays = document.querySelector('span[data-days=""]');
         this.dataHours = document.querySelector('span[data-hours=""]');
         this.dataMinutes = document.querySelector('span[data-minutes=""]');
@@ -42,7 +41,8 @@ class TimeCounter {
 
     Init() {
 
-
+        let btnStart = document.querySelector('button[data-start=""]');
+        let dtPicker = document.querySelector('input[type="text"]');
         let deltaTime;
         let options = {
             enableTime: true,
@@ -63,9 +63,9 @@ class TimeCounter {
             },
         };
 
-        flatpickr(this.dtPicker, options);
+        flatpickr(dtPicker, options);
 
-        this.btnStart.addEventListener('click', () => {
+        btnStart.addEventListener('click', () => {
             setInterval(() => {
                 deltaTime = deltaTime - 1000;
                 let { days, hours, minutes, seconds } = this.convertMs(deltaTime);
