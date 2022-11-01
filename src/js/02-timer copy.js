@@ -5,31 +5,37 @@ import "flatpickr/dist/flatpickr.min.css";
 class TimeCounter {
 
     constructor() {
-        this.dtPicker = document.querySelector('input[type="text"]');
-        this.btnStart = document.querySelector('button[data-start=""]');
-        this.dataDays = document.querySelector('span[data-days=""]');
-        this.dataHours = document.querySelector('span[data-hours=""]');
-        this.dataMinutes = document.querySelector('span[data-minutes=""]');
-        this.dataSeconds = document.querySelector('span[data-seconds=""]');
+        this.dtPicker = this.getEl('input[type="text"]');
+        this.btnStart = this.getEl('button[data-start=""]');
+        this.dataDays = this.getEl('span[data-days=""]');
+        this.dataHours = this.getEl('span[data-hours=""]');
+        this.dataMinutes = this.getEl('span[data-minutes=""]');
+        this.dataSeconds = this.getEl('span[data-seconds=""]');
         this.deltaTime, leftTime;
         options = {
             enableTime: true,
             time_24hr: true,
             defaultDate: new Date(),
             minuteIncrement: 1,
-            onClose(selectedDates) {
-                console.log(selectedDates[0]);
-
-                if (selectedDates[0] < new Date()) {
-                    console.log("Please choose a date in the future");
-                    btnStart.setAttribute('disabled', 'disabled');
-
-                } else {
-                    btnStart.removeAttribute('disabled');
-                    deltaTime = selectedDates[0] - new Date();
-                }
-            },
+            this.onClose(selectedDates),
         };
+    }
+
+    onClose(selectedDates) {
+        console.log(selectedDates[0]);
+
+        if (selectedDates[0] < new Date()) {
+            console.log("Please choose a date in the future");
+            btnStart.setAttribute('disabled', 'disabled');
+
+        } else {
+            btnStart.removeAttribute('disabled');
+            deltaTime = selectedDates[0] - new Date();
+        }
+    }
+
+    getEl(selector) {
+        return document.querySelector(selector);
     }
 
     convertMs(ms) {
