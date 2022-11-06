@@ -1,3 +1,5 @@
+import Notiflix from 'notiflix';
+
 let timerId;
 const buttonCP = document.querySelector('form');
 
@@ -10,9 +12,11 @@ buttonCP.addEventListener('submit', (event) => {
     const timerId = setTimeout(() => {
       createPromise(i, dalay)
         .then(({ position, delay }) => {
-          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+          //console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+          Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
         }).catch(({ position, delay }) => {
-          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+         // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+          Notiflix.Notify.failure(`✅ Fulfilled promise ${position} in ${delay}ms`);
         })
     }, step);
   }  

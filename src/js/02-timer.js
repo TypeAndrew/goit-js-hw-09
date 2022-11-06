@@ -51,7 +51,7 @@ class TimeCounter {
             onClose(selectedDates) {
                 console.log(selectedDates[0]);
 
-                if (selectedDates[0] < new Date()) {
+                if (selectedDates[0] <= new Date()) {
                     console.log("Please choose a date in the future");
                     btnStart.setAttribute('disabled', 'disabled');
 
