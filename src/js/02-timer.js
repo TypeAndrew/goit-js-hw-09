@@ -13,7 +13,6 @@ class TimeCounter {
         this.dataSeconds = document.querySelector('span[data-seconds=""]');
         this.deltaTime, this.leftTime;
 
-
     }
 
     convertMs(ms) {
@@ -66,15 +65,23 @@ class TimeCounter {
         flatpickr(dtPicker, options);
 
         btnStart.addEventListener('click', () => {
-            setInterval(() => {
-                deltaTime = deltaTime - 1000;
+            let intervalID = setInterval(() => {
+               
+                    deltaTime = deltaTime - 1000;
                 let { days, hours, minutes, seconds } = this.convertMs(deltaTime);
-
+               
+                if ( seconds === 0) {
+                    clearInterval(intervalID);
+                 
+                }     
+                
                 this.dataDays.textContent = this.addLeadingZero(days);
                 this.dataHours.textContent = this.addLeadingZero(hours);
                 this.dataMinutes.textContent = this.addLeadingZero(minutes);
                 this.dataSeconds.textContent = this.addLeadingZero(seconds);
-            }, 1000);
+                  
+                }, 1000);
+                
         });
     }
 }

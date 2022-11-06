@@ -16,6 +16,7 @@
       this.timerId = setInterval(() => {
         console.log(document.body.style.background = this.getRandomHexColor()); 
       }, 1000);
+      this.btnStart.setAttribute('disabled', 'disabled');
       
     });
   }
@@ -23,7 +24,7 @@
   startChangeCollor() {
     this.btnStop.addEventListener("click", () => {
       clearInterval(this.timerId);
-      
+      this.btnStart.removeAttribute('disabled');
     });
   }
 

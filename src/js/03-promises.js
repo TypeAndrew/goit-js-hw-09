@@ -1,5 +1,3 @@
-
-
 let timerId;
 const buttonCP = document.querySelector('form');
 
@@ -9,13 +7,14 @@ buttonCP.addEventListener('submit', (event) => {
   const step = document.querySelector('input[name="step"]').value;
   const amount = document.querySelector('input[name="amount"]').value;
   for (let i = 0; i < amount; i++){
-  const timerId = setTimeout(createPromise(i, dalay)
-    .then(({ position, delay }) => {
-      console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-    }).catch(({ position, delay }) => {
-      console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-    })
-    , step);
+    const timerId = setTimeout(() => {
+      createPromise(i, dalay)
+        .then(({ position, delay }) => {
+          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+        }).catch(({ position, delay }) => {
+          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+        })
+    }, step);
   }  
      
 });
@@ -25,7 +24,7 @@ function createPromise(position, delay) {
   
   
   const promise = new Promise(function (resolve, reject) {
-  const shouldResolve = Math.random() > 0.5;
+  const shouldResolve = Math.random() > 0.3;
     
     let result = {"position": position, "delay":  delay};
     if (shouldResolve) {
@@ -33,7 +32,7 @@ function createPromise(position, delay) {
       resolve(result);
     } else {
       // Reject
-      reject(result);s
+      reject(result);
     }
   });
   return promise;
