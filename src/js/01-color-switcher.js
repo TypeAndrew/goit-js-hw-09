@@ -20,7 +20,7 @@
       
     });
   }
-
+  
   startChangeCollor() {
     this.btnStop.addEventListener("click", () => {
       clearInterval(this.timerId);
